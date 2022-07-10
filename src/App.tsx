@@ -1,22 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
+
 import AppLogo from './components/AppLogo/AppLogo';
+import SearchSVG from './assets/svg/magnifying-glass-solid.svg';
+import ClearSVG from './assets/svg/xmark-solid.svg';
+
 import './App.scss';
-import TrendsCard from './components/TrendsCard/TrendsCard';
 
 /**
  * The main <App> component of our application.
  * @return {JsxElement}
  */
 function App(): JSX.Element {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showResults, setShowResults] = useState(false);
+
   return (
     <div className='App'>
       <AppLogo/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
+
+      {/* The SearchBox component */}
+      <div className={
+        showResults ? 'search-box-container minimized' : 'search-box-container'
+      }>
+        <input placeholder='Search'
+          value={searchQuery}
+          onChange={(e)=> setSearchQuery(e.currentTarget.value)}/>
+        <button onClick={()=>setShowResults(!showResults)}>
+          <img src={showResults ? ClearSVG : SearchSVG}
+            alt='search'/>
+        </button>
+
+      </div>
+
     </div>
   );
 }
