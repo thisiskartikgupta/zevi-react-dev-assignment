@@ -1,5 +1,5 @@
 
-.suggestion-card-container {
+.trends-card-container {
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -17,14 +17,14 @@
 }
 
 @media(min-width:768px) {
-  .suggestion-card-container {
+  .trends-card-container {
     width: 25%;
   }
 }
 
 @media(min-width:1024px) {
 
-  .suggestion-card-container {
+  .trends-card-container {
     width:10%;
   }
 }

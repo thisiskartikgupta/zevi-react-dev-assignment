@@ -1,19 +1,20 @@
 
 import React from 'react';
-import './SuggestionCard.scss';
+import './TrendsCard.scss';
 
-type SuggestionCardProps = {
+type TrendsCardProps = {
+
   imgUrl: string,
   description: string
 };
 
-const SuggestionCard = (props :SuggestionCardProps) => {
+const TrendsCard = (props :TrendsCardProps) => {
   return (
-    <div className='suggestion-card-container'>
+    <div className='trends-card-container'>
       <img src={props.imgUrl} alt="Representative Image"/>
       <div >{props.description}</div>
     </div>
   );
 };
 
-export default SuggestionCard;
+export default TrendsCard;
