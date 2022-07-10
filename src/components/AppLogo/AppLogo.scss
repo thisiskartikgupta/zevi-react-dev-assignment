@@ -1,0 +1,30 @@
+.app-logo-container {
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  img {
+    padding: 5% 2%;
+    width: 20%;
+  }
+}
+
+@media(min-width:768px) {
+
+  .app-logo-container {
+    img {
+      padding: 0.5% 2%;
+      width: 14%;
+    }
+  }
+}
+
+@media(min-width:1024px) {
+
+  .app-logo-container {
+    img {
+      padding: 0.5% 2%;
+      width: 9%;
+    }
+  }
+}
