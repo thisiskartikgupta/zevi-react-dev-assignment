@@ -2,7 +2,8 @@
 .trends-card-container {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 30%;
+  height: 100%;
   img {
     padding: 2%;
     width: 100%;
@@ -11,8 +12,9 @@
   }
   div {
     margin-top: 4%;
-    font-size: 0.9em;
+    font-size: 0.8em;
     text-align: center;
+    font-weight: 600;
   }
 }
 
@@ -25,6 +27,7 @@
 @media(min-width:1024px) {
 
   .trends-card-container {
-    width:10%;
+    width:15%;
+    
   }
 }

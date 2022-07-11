@@ -2,4 +2,62 @@
 
 .App {
   font-family: 'Roboto', sans-serif;
+
+  .search-box-container {
+    display: flex;
+    justify-content: center;
+    background-color:  rgba($color: #fff, $alpha: 0.6);
+    color: #000;
+    border: 1px rgba($color: #fff, $alpha: 0.6);
+    border-radius: 16px;
+
+    width: 80%;
+    margin: 1% 10%;
+
+    input {
+      width: 90%;
+      border-radius: 16px 0px 0px 16px;
+      border: none;
+      font-size: 1.2em;
+      padding: 2% 1% 2% 4%;
+    }
+    input:focus {
+      outline: none;
+    }
+
+    button {
+      width: 10%;
+      padding-right: 4%;
+      border: none;
+      background-color: #fff;
+      border-radius: 0px 16px 16px 0px;
+
+      img {
+        width: 70%;
+      }
+    }
+  }
+}
+
+@media(min-width:1024px) {
+  
+  .App {
+    .search-box-container {
+      margin: 1% 25%;
+      width: 50%;
+  
+      input {
+        padding: 1.5% 0% 1.5% 3%;
+        font-size: 1.6em;
+        width: 95%;  
+      }
+      
+      button {
+        img {
+          width: 60%;
+        }
+        width: 10%;
+      }
+    }
+  }
 }

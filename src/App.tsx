@@ -1,24 +1,61 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
+import SearchBoxCard from './components/SearchBoxCard/SearchBoxCard';
+
+import {TrendDataType, TrendsData, SuggestionData,
+  ProductData, ProductType} from './fakerData';
+import SearchSVG from './assets/svg/magnifying-glass-solid.svg';
 import AppLogo from './components/AppLogo/AppLogo';
 import './App.scss';
-import TrendsCard from './components/TrendsCard/TrendsCard';
 
 /**
  * The main <App> component of our application.
  * @return {JsxElement}
  */
-function App(): JSX.Element {
+const App : React.FunctionComponent = () => {
+  const [trendsData, setTrendsData] = useState<TrendDataType[]>([]);
+  const [suggestionData, setSuggestionData] = useState<string[]>([]);
+  const [productData, setProductData] = useState<ProductType[]>([]);
+
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showResults, setShowResults] = useState<boolean>(false);
+
+  // console.log(trendsData, suggestionData, productData,
+  //     showResults, searchQuery);
+  console.log(productData);
+
+  useEffect(() => {
+    setTrendsData(TrendsData);
+    setSuggestionData(SuggestionData);
+    setProductData(ProductData);
+  }, []);
+
   return (
     <div className='App'>
       <AppLogo/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
-      <TrendsCard imgUrl="https://images.bestsellerclothing.in/data/only/august-27-2021/228037401_g4.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" description='Shirt with puffed sleeves'/>
+
+      {/* The SearchBox component */}
+      <div className='search-box-container'>
+        <input placeholder='Search' value={searchQuery}
+          onChange={(e) => setSearchQuery(e.currentTarget.value)} autoFocus/>
+        <button onClick= {() => setShowResults(!showResults)}>
+          <img src={SearchSVG} alt='search'/>
+        </button>
+      </div>
+      <div>
+        {
+          showResults ?
+          searchQuery :
+          searchQuery.length !== 0 ?
+          <SearchBoxCard
+            trendsData={trendsData} suggestionData={suggestionData}
+            setSearchQuery={setSearchQuery}
+          /> : null
+        }
+      </div>
+
     </div>
   );
-}
+};
 
 export default App;

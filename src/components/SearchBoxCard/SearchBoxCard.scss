@@ -1,0 +1,46 @@
+$search-box-color-bg-color : rgb(255, 255, 255);
+
+.search-box-card {
+
+  background-color: $search-box-color-bg-color;
+  padding: 4%;
+
+  div {
+    h3 {
+      font-size: 1.4em;
+      padding: 2% 0%;
+    }
+
+    .trends-card-view {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+  }
+
+  .suggestions {
+    padding: 0.5%;
+    font-size: 1.1rem;
+  }
+}
+
+@media(min-width:768px) {
+
+  .search-box-card {
+    width: 80%;
+    margin: 0% 10%;
+  }
+}
+
+@media(min-width:1024px) {
+
+  .search-box-card {
+    padding: 2%;
+    width: 60%;
+    margin: 0% 20%;
+    
+    -webkit-box-shadow: 4px 4px 13px 1px rgba(230,230,230,1);
+    -moz-box-shadow: 4px 4px 13px 1px rgba(230,230,230,1);
+    box-shadow: 4px 4px 13px 1px rgba(230,230,230,1);
+  }
+}
