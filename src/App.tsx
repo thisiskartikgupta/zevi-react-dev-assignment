@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 
 import SearchBoxCard from './components/SearchBoxCard/SearchBoxCard';
+import SearchResultsSection from
+  './components/SearchResultsSection/SearchResultsSection';
 
 import {TrendDataType, TrendsData, SuggestionData,
   ProductData, ProductType} from './fakerData';
@@ -45,7 +47,9 @@ const App : React.FunctionComponent = () => {
       <div>
         {
           showResults ?
-          searchQuery :
+          <SearchResultsSection
+            productData={productData}
+            searchQuery={searchQuery}/> :
           searchQuery.length !== 0 ?
           <SearchBoxCard
             trendsData={trendsData} suggestionData={suggestionData}

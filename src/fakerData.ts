@@ -48,6 +48,7 @@ export type ProductType = {
   discountedPrice: string,
   rating: number,
   noOfReviews: number,
+  isFavourite: boolean,
 }
 
 const getProductData = () => {
@@ -63,6 +64,7 @@ const getProductData = () => {
     const rating =
       Math.round(Math.random() * (MAX_RATING - MIN_RATING) + MIN_RATING);
     const noOfReviews = Math.floor(Math.random() * 1000);
+    const isFavourite = false;
 
     productData.push({
       productName: productName,
@@ -71,6 +73,7 @@ const getProductData = () => {
       discountedPrice: discountedPrice,
       rating: rating,
       noOfReviews: noOfReviews,
+      isFavourite: isFavourite,
     });
   };
 
