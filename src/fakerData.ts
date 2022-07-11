@@ -6,16 +6,16 @@ const MIN_RATING = 1;
 
 // ------------------------------------------------------------------
 
-type TrendData = {
+export type TrendDataType = {
   imgUrl: string,
   description: String,
 }
 
 const getTrendsData = () => {
-  const trendsData : TrendData[] = [];
+  const trendsData : TrendDataType[] = [];
 
   for ( let i = 0; i < 5; i++) {
-    const imgUrl : string = faker.image.people();
+    const imgUrl : string = faker.image.people(300, 400);
     const description : string = faker.commerce.productName();
     trendsData.push({
       imgUrl: imgUrl,
@@ -41,7 +41,7 @@ const getSuggestionData = () => {
 
 // ------------------------------------------------------------------
 
-type Product = {
+export type ProductType = {
   productName: string,
   currencyPrefix : string,
   originalPrice: string,
@@ -51,7 +51,7 @@ type Product = {
 }
 
 const getProductData = () => {
-  const productData : Product[] = [];
+  const productData : ProductType[] = [];
 
   for (let i = 0; i < 20; i++) {
     const productName : string = faker.commerce.productName();
@@ -79,12 +79,7 @@ const getProductData = () => {
 
 // ------------------------------------------------------------------
 
-const TrendsData = getTrendsData();
-const SuggestionData = getSuggestionData();
-const ProductData = getProductData();
-
-console.log(TrendsData, SuggestionData, ProductData);
-
-
-export default {TrendsData, SuggestionData, ProductData};
+export const TrendsData = getTrendsData();
+export const SuggestionData = getSuggestionData();
+export const ProductData = getProductData();
 
