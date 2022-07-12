@@ -1,0 +1,66 @@
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin absolute-position {
+  margin: 0.5%;
+  position: absolute;
+}
+
+$discounted-price-color: #00c;
+$hover-text-bg-color: rgba(42, 99, 204, 0.671);
+$hover-text-font-color: #fff;
+
+.product-result-card {
+  border-radius: 16px;
+  @include flex-column;
+  margin: 4%;
+  width: 100%;
+
+  .image-container {
+    border-radius: 16px;
+    width: 100%;
+    
+    .display {
+      border-radius: 16px;
+    }
+
+    .favourite-solid {
+      @include absolute-position;
+      width: 2%;
+    }
+
+    .favourite-outline {
+      @include absolute-position;
+      width: 1.8%;
+    }
+  }
+
+  .text-container {
+    @include flex-column;
+    .product-name {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+  }
+}
+
+.discounted-price {
+  color: $discounted-price-color;
+  font-weight: 600;
+}
+.hover-text {
+  text-align: center;
+  background-color: $hover-text-bg-color;
+  position: absolute;
+  margin-top: 18%;
+  color: $hover-text-font-color;
+  width: 15.8%;
+  border-radius: 0px 0px 16px 16px ;
+}
+
+.hide {
+  display: none !important;
+}
