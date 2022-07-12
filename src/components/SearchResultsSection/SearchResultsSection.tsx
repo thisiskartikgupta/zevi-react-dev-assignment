@@ -2,6 +2,10 @@
 import React, {useEffect, useState} from 'react';
 import {ProductType} from '../../fakerData';
 
+import ProductResultCard from '../ProductResultCard/ProductResultCard';
+
+import ArrowUpSVG from '../../assets/svg/angle-up-solid.svg';
+import ArrowDownSVG from '../../assets/svg/angle-down-solid.svg';
 import './SearchResultsSection.scss';
 
 type SearchResultsSectionPropsType = {
@@ -14,6 +18,11 @@ type FilterType = {
   price: boolean[]
 };
 
+type ExpandFilterType = {
+  rating: boolean,
+  price: boolean,
+};
+
 const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
   const [filteredData, setFilteredData] = useState<ProductType[]>([]);
   const [filters, setFilters] = useState<FilterType>({
@@ -21,10 +30,10 @@ const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
     price: [false, false, false],
   });
   const [displayData, setDisplayData] = useState<ProductType[]>(props.productData);
+  const [expandFilter, setExpandFilter] = useState<ExpandFilterType>({rating: true, price: true});
 
   useEffect(() => {
     setFilteredData(props.productData);
-    console.log(filteredData);
     const newFilterData:ProductType[] = [];
     for (let i = 0; i < filters.rating.length; i++) {
       if (filters.rating[i]) {
@@ -43,25 +52,19 @@ const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
           newFilterData.push(element);
         }
       });
-    }
-
-    if (filters.price[1]) {
+    } else if (filters.price[1]) {
       filteredData.forEach((element) => {
         if (Number(element.discountedPrice) >= 500 && Number(element.discountedPrice) <= 2000) {
           newFilterData.push(element);
         }
       });
-    }
-
-    if (filters.price[2]) {
+    } else if (filters.price[2]) {
       filteredData.forEach((element) => {
         if (Number(element.discountedPrice) > 2000) {
           newFilterData.push(element);
         }
       });
     }
-
-    console.log(newFilterData, filters);
     setDisplayData(newFilterData);
   }, [filters]);
 
@@ -71,55 +74,12 @@ const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
       <div>
         <div className='filter-section'>
 
-          <div>
-            <div>Ratings</div>
+          <div className='filter-header'>
+            <div>RATINGS</div>
+            <img onClick={()=>setExpandFilter({...expandFilter, rating: !expandFilter.rating})} src={expandFilter.rating ? ArrowUpSVG : ArrowDownSVG} alt='show/hide'/>
           </div>
-          <div>
+          <div className={!expandFilter.rating ? 'hide' : 'show'}>
             <ul>
-              <li>
-                <input type='checkbox'
-                  onChange={()=> {
-                    const newFilters = [...filters.rating];
-                    newFilters[0] = !newFilters[0];
-                    setFilters({...filters, rating: newFilters});
-                  }}
-                />
-                <div>★☆☆☆☆</div>
-              </li>
-
-              <li>
-                <input type='checkbox'
-                  onChange={()=> {
-                    const newFilters = [...filters.rating];
-                    newFilters[1] = !newFilters[1];
-                    setFilters({...filters, rating: newFilters});
-                  }}
-                />
-                <div>★★☆☆☆</div>
-              </li>
-
-              <li>
-                <input type='checkbox'
-                  onChange={()=> {
-                    const newFilters = [...filters.rating];
-                    newFilters[2] = !newFilters[2];
-                    setFilters({...filters, rating: newFilters});
-                  }}
-                />
-                <div>★★★☆☆</div>
-              </li>
-
-              <li>
-                <input type='checkbox'
-                  onChange={()=> {
-                    const newFilters = [...filters.rating];
-                    newFilters[3] = !newFilters[3];
-                    setFilters({...filters, rating: newFilters});
-                  }}
-                />
-                <div>★★★★☆</div>
-              </li>
-
               <li>
                 <input type='checkbox'
                   onChange={()=> {
@@ -128,15 +88,59 @@ const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
                     setFilters({...filters, rating: newFilters});
                   }}
                 />
-                <div>★★★★★</div>
+                <div className='rating-div'>★★★★★</div>
+              </li>
+              <li>
+                <input type='checkbox'
+                  onChange={()=> {
+                    const newFilters = [...filters.rating];
+                    newFilters[3] = !newFilters[3];
+                    setFilters({...filters, rating: newFilters});
+                  }}
+                />
+                <div className='rating-div'>★★★★☆</div>
+              </li>
+
+              <li>
+                <input type='checkbox'
+                  onChange={()=> {
+                    const newFilters = [...filters.rating];
+                    newFilters[2] = !newFilters[2];
+                    setFilters({...filters, rating: newFilters});
+                  }}
+                />
+                <div className='rating-div'>★★★☆☆</div>
+              </li>
+
+              <li>
+                <input type='checkbox'
+                  onChange={()=> {
+                    const newFilters = [...filters.rating];
+                    newFilters[1] = !newFilters[1];
+                    setFilters({...filters, rating: newFilters});
+                  }}
+                />
+                <div className='rating-div'>★★☆☆☆</div>
+              </li>
+
+              <li>
+                <input type='checkbox'
+                  onChange={()=> {
+                    const newFilters = [...filters.rating];
+                    newFilters[0] = !newFilters[0];
+                    setFilters({...filters, rating: newFilters});
+                  }}
+                />
+                <div className='rating-div'>★☆☆☆☆</div>
               </li>
             </ul>
           </div>
 
-          <div>
-            <div>Price Range</div>
+          <div className='filter-header'>
+            <div>PRICE RANGE</div>
+            <img onClick={()=>setExpandFilter({...expandFilter, price: !expandFilter.price})} src={expandFilter.price ? ArrowUpSVG : ArrowDownSVG} alt='show/hide'/>
           </div>
-          <div>
+          <div className={!expandFilter.price ? 'hide' : 'show'}>
             <ul>
               <li>
                 <input type='checkbox'
@@ -146,7 +150,7 @@ const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
                     setFilters({...filters, price: newFilters});
                   }}
                 />
-                <div>Under 500</div>
+                <div className='content'>Under 500</div>
               </li>
               <li>
                 <input type='checkbox'
@@ -156,7 +160,7 @@ const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
                     setFilters({...filters, price: newFilters});
                   }}
                 />
-                <div>500 to 2000</div>
+                <div className='content'>500 to 2000</div>
               </li>
               <li>
                 <input type='checkbox'
@@ -166,7 +170,7 @@ const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
                     setFilters({...filters, price: newFilters});
                   }}
                 />
-                <div>Above 2000</div>
+                <div className='content'>Above 2000</div>
               </li>
             </ul>
           </div>
@@ -174,10 +178,9 @@ const SearchResultsSection = (props : SearchResultsSectionPropsType) => {
         </div>
 
         <div className='product-section'>
-          product section
           {
-            [...displayData].map((element, index) => (element.setDisplayActive) ? <div key={index}>{element.productName} + [{element.rating}] || [{element.discountedPrice}]</div> : null)
-            // JSON.stringify(displayData)
+            displayData.length === 0 ? 'NO RESULTS FOUND. TRY CHANGING THE FILTERS.' :
+            [...displayData].map((element, index) => (element.setDisplayActive) ? <ProductResultCard key={index} product={element}/> : null)
           }
         </div>
       </div>

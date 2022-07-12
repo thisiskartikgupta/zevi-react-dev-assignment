@@ -21,6 +21,7 @@ const App : React.FunctionComponent = () => {
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showResults, setShowResults] = useState<boolean>(false);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
 
   useEffect(() => {
     setTrendsData(TrendsData);
@@ -33,7 +34,7 @@ const App : React.FunctionComponent = () => {
       <AppLogo/>
 
       {/* The SearchBox component */}
-      <div className='search-box-container'>
+      <div onClick={() => setShowSuggestions(!showSuggestions)} className='search-box-container'>
         <input placeholder='Search' value={searchQuery}
           onChange={(e) => setSearchQuery(e.currentTarget.value)} autoFocus/>
         <button onClick= {() => setShowResults(!showResults)}>
@@ -46,7 +47,7 @@ const App : React.FunctionComponent = () => {
           <SearchResultsSection
             productData={productData}
             searchQuery={searchQuery}/> :
-          searchQuery.length !== 0 ?
+          (searchQuery.length !== 0 || showSuggestions) ?
           <SearchBoxCard
             trendsData={trendsData} suggestionData={suggestionData}
             setSearchQuery={setSearchQuery}

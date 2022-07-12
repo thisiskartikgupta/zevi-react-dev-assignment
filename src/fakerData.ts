@@ -1,6 +1,5 @@
 import {faker} from '@faker-js/faker';
 
-
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
@@ -42,6 +41,7 @@ const getSuggestionData = () => {
 // ------------------------------------------------------------------
 
 export type ProductType = {
+  imgUrl:string,
   productName: string,
   currencyPrefix : string,
   originalPrice: string,
@@ -56,6 +56,7 @@ const getProductData = () => {
   const productData : ProductType[] = [];
 
   for (let i = 0; i < 20; i++) {
+    const imgUrl : string = faker.image.people(300, 400);
     const productName : string = faker.commerce.productName();
     // Hard-coded the value for demo purposes
     const currencyPrefix : string = 'Rs.';
@@ -64,11 +65,12 @@ const getProductData = () => {
       faker.commerce.price(100, Number(originalPrice));
     const rating =
       Math.round(Math.random() * (MAX_RATING - MIN_RATING) + MIN_RATING);
-    const noOfReviews = Math.floor(Math.random() * 1000);
+    const noOfReviews = Math.floor(Math.random() * 1000 + 1);
     const isFavourite = false;
     const setDisplayActive = true;
 
     productData.push({
+      imgUrl: imgUrl,
       productName: productName,
       currencyPrefix: currencyPrefix,
       originalPrice: originalPrice,
