@@ -15,6 +15,7 @@ $search-results-section-bg-color:#fff;
   }
   div {
     display: flex;
+    // flex-direction: column-reverse;
     padding: 1% 2%;
     justify-content: space-between;
     
@@ -23,12 +24,10 @@ $search-results-section-bg-color:#fff;
       justify-content: center;
       display: inline-block;
       flex-direction: column;
-      // align-items: center;
       
       .filter-header {
         padding: 4% 0% 0% 2%;
         display: flex;
-        // align-items: center;
         justify-content: space-between;
 
         img {
@@ -71,16 +70,19 @@ $search-results-section-bg-color:#fff;
           }
         }
       }
-    }
-
-    
+    }    
   }
-
 }
 
 .product-section {
   width: 80%;
-  // background-color: teal;
   display: grid !important;
   grid-template-columns: repeat(4,auto);
+}
+
+@media(min-width:768px) {
+
+}
+
+@media(min-width:1024px) { 
 }
