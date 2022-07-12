@@ -1,3 +1,9 @@
+
+#### LIVE LINK : [Click Here](https://zevi-search-thisiskartikgupta.netlify.app/)
+#### DEMO VIDEO : [Click Here](https://drive.google.com/file/d/1G0ALAv6zcs87DllromwWgB0eYsTlRj5G/view?usp=sharing)
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
