@@ -1,0 +1,21 @@
+
+$search-results-section-bg-color:#fff;
+
+.search-results-section {
+  background-color: $search-results-section-bg-color;
+  display: flex;
+  flex-direction: column;
+  
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    .filter-section {
+      display: flex;
+      flex-direction: column;
+      
+    }
+  }
+
+}

@@ -22,10 +22,6 @@ const App : React.FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showResults, setShowResults] = useState<boolean>(false);
 
-  // console.log(trendsData, suggestionData, productData,
-  //     showResults, searchQuery);
-  console.log(productData);
-
   useEffect(() => {
     setTrendsData(TrendsData);
     setSuggestionData(SuggestionData);

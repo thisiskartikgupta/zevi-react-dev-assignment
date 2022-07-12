@@ -49,6 +49,7 @@ export type ProductType = {
   rating: number,
   noOfReviews: number,
   isFavourite: boolean,
+  setDisplayActive: boolean,
 }
 
 const getProductData = () => {
@@ -65,6 +66,7 @@ const getProductData = () => {
       Math.round(Math.random() * (MAX_RATING - MIN_RATING) + MIN_RATING);
     const noOfReviews = Math.floor(Math.random() * 1000);
     const isFavourite = false;
+    const setDisplayActive = true;
 
     productData.push({
       productName: productName,
@@ -74,6 +76,7 @@ const getProductData = () => {
       rating: rating,
       noOfReviews: noOfReviews,
       isFavourite: isFavourite,
+      setDisplayActive: setDisplayActive,
     });
   };
 
